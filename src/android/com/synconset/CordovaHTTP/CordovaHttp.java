@@ -103,4 +103,23 @@ public abstract class CordovaHttp {
     protected void respondWithError(String msg) {
         this.respondWithError(500, msg);
     }
+
+    protected JSONObject parseHeaders(Map<String, List<String>> headers) {
+        try {
+            JSONObject jsonHeaders = new JSONObject();
+            Iterator<Map.Entry<String, List<String>>> it = headers.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pairs = (Map.Entry) it.next();
+                Object key = pairs.getKey();
+                if (key != null) {
+                    jsonHeaders.put(pairs.getKey().toString(), ((List<String>) pairs.getValue()).get(0));
+                }
+            }
+
+            return jsonHeaders;
+        } catch (JSONException e) {
+            this.callbackContext.error("Error parsing headers");
+            return null;
+        }
+    }
 }
