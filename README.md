@@ -69,10 +69,11 @@ Accept all SSL certificates.  Or disable accepting all certificates.
 Execute a POST request.  Takes a URL, parameters, and headers.
 
 #### success
-The success function receives a response object with 2 properties: status and data.  Status is the HTTP response code and data is the response from the server as a string. Here's a quick example:
+The success function receives a response object with 3 properties: status, headers and data.  Status is the HTTP response code and data is the response from the server as a string. Here's a quick example:
 
     {
         status: 200,
+		headers: "{ ... }",
         data: "{'id': 12, 'message': 'test'}"
     }
     
